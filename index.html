@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>С Днём Рождения, Машка! 🎆</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <div class="lights"></div>
+
+    <main class="stage" id="stage">
+      <!-- СЦЕНА 1: ТИЗЕР -->
+      <section class="scene active" data-scene="0">
+        <div class="content">
+          <p class="hint" data-anim>Сегодня особенный день…</p>
+          <h1 class="hero-title hero-title-tizer" data-anim>
+            <span class="letter">М</span><span class="letter">А</span
+            ><span class="letter">Ш</span><span class="letter">А</span>
+          </h1>
+          <button class="mega-btn" id="startBtn" data-anim>ЗАПУСТИТЬ 🎆</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 2: ПОЗДРАВЛЕНИЕ -->
+      <section class="scene" data-scene="1">
+        <div class="content">
+          <h2 class="big-title" data-anim>С ДНЁМ<br />РОЖДЕНИЯ!</h2>
+          <p class="sub" data-anim>Машка 🎂</p>
+          <button class="mega-btn" data-next data-anim>ДАЛЬШЕ →</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 3: БУКЕТ -->
+      <section class="scene" data-scene="2">
+        <div class="content wide">
+          <h2 class="big-title small" data-anim>Специально для тебя 💐</h2>
+
+          <div class="bouquet-stage" data-anim>
+            <canvas class="petals-canvas" id="petalsCanvas"></canvas>
+            <div class="bouquet-glow"></div>
+            <div class="bouquet-parallax" id="bouquetParallax">
+              <img
+                src="images/bouquet.png"
+                alt="Букет"
+                class="bouquet-img"
+                id="bouquetImg"
+              />
+              <div class="bouquet-shadow"></div>
+            </div>
+            <div class="bouquet-cta">
+              <span class="cta-arrow">👇</span>
+              <span class="cta-text">Нажми на цветы</span>
+              <span class="cta-heart">💐</span>
+            </div>
+          </div>
+
+          <div class="flowers-info">
+            <div class="info-card" data-anim>
+              <span class="info-icon">🎬</span>
+              <p class="caption">Зверополис</p>
+              <p class="time">1:23:46</p>
+            </div>
+            <div class="info-card" data-anim>
+              <span class="info-icon">🎬</span>
+              <p class="caption">Дневник памяти</p>
+              <p class="time">1:38:11</p>
+            </div>
+            <div class="info-card" data-anim>
+              <span class="info-icon">🎬</span>
+              <p class="caption">Человек-паук:<br />Высокое напряжение</p>
+              <p class="time">1:45:25</p>
+            </div>
+          </div>
+
+          <button class="mega-btn" data-next data-anim>ДАЛЬШЕ →</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 4: ПЕСНИ -->
+      <section class="scene" data-scene="3">
+        <div class="content">
+          <h2 class="big-title small" data-anim>🎵(можно прослушать)</h2>
+
+          <ul class="song-list">
+            <li data-anim class="song-item" data-src="music/ty-sluchilas.mp3">
+              <button class="song-btn">
+                <span class="song-note">♪</span>
+                <span class="song-play">▶</span>
+                <span class="song-pause">❚❚</span>
+              </button>
+              <span class="song-name">Ты случилась</span>
+              <div class="song-bars">
+                <span></span><span></span><span></span><span></span
+                ><span></span>
+              </div>
+            </li>
+            <li
+              data-anim
+              class="song-item"
+              data-src="music/slovno-v-parizhe.mp3"
+            >
+              <button class="song-btn">
+                <span class="song-note">♫</span>
+                <span class="song-play">▶</span>
+                <span class="song-pause">❚❚</span>
+              </button>
+              <span class="song-name">Словно в Париже</span>
+              <div class="song-bars">
+                <span></span><span></span><span></span><span></span
+                ><span></span>
+              </div>
+            </li>
+            <li data-anim class="song-item" data-src="music/salyut.mp3">
+              <button class="song-btn">
+                <span class="song-note">♪</span>
+                <span class="song-play">▶</span>
+                <span class="song-pause">❚❚</span>
+              </button>
+              <span class="song-name">Салют</span>
+              <div class="song-bars">
+                <span></span><span></span><span></span><span></span
+                ><span></span>
+              </div>
+            </li>
+          </ul>
+
+          <button class="mega-btn" data-next data-anim>ДАЛЬШЕ →</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 5: ФОТО-ГАЛЕРЕЯ -->
+      <section class="scene" data-scene="4">
+        <div class="content wide">
+          <h2 class="big-title small" data-anim>📸</h2>
+
+          <div class="gallery" data-anim>
+            <button class="gal-arrow gal-prev" id="galPrev" aria-label="Назад">
+              ‹
+            </button>
+            <div class="gal-viewport">
+              <div class="gal-track" id="galTrack">
+                <div class="gal-slide">
+                  <img src="images/photo1.jpg" alt="" />
+                </div>
+                <div class="gal-slide">
+                  <img src="images/photo2.jpg" alt="" />
+                </div>
+                <div class="gal-slide">
+                  <img src="images/photo3.jpg" alt="" />
+                </div>
+                <div class="gal-slide">
+                  <img src="images/photo4.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+            <button class="gal-arrow gal-next" id="galNext" aria-label="Вперёд">
+              ›
+            </button>
+            <div class="gal-dots" id="galDots"></div>
+          </div>
+
+          <button class="mega-btn" data-next data-anim>ДАЛЬШЕ →</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 6: 3D-ВСЕЛЕННАЯ -->
+      <section class="scene" data-scene="5">
+        <div class="content wide">
+          <h2 class="big-title small" data-anim>✨</h2>
+          <p class="sub-small" data-anim>Веди мышкой — покрути мир</p>
+
+          <div class="universe-stage" id="universeStage">
+            <canvas id="universeCanvas"></canvas>
+            <div class="three-hint">тяни мышкой / пальцем 🌌</div>
+          </div>
+
+          <button class="mega-btn" data-next data-anim>ДАЛЬШЕ →</button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 7: ИГРА ШАРИКИ -->
+      <section class="scene" data-scene="6">
+        <div class="content wide">
+          <h2 class="big-title small" data-anim>Лопни шарики 🎈</h2>
+
+          <div class="game-intro" id="gameIntro" data-anim>
+            <p class="game-rules">
+              <span>🎈 +1</span>
+              <span>💗 +2</span>
+              <span>⭐ +5</span>
+              <span>💎 +10</span>
+              <span>💣 −2</span>
+            </p>
+            <p class="game-time-hint">⏱️ У тебя всего 10 секунд!</p>
+            <button class="mega-btn" id="playBtn">ИГРАТЬ 🎯</button>
+          </div>
+
+          <div class="game-wrap" id="gameWrap">
+            <svg
+              class="timer-ring"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <circle class="ring-bg" cx="50" cy="50" r="48" />
+              <circle class="ring-fg" cx="50" cy="50" r="48" id="ringFg" />
+            </svg>
+
+            <div class="game-hud">
+              <div class="hud-item">
+                <span class="hud-label">ОЧКИ</span>
+                <span class="hud-value" id="scoreVal">0</span>
+              </div>
+              <div class="hud-item time-hud">
+                <span class="hud-label">ВРЕМЯ</span>
+                <span class="hud-value" id="timeVal">10</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">РЕКОРД</span>
+                <span class="hud-value" id="bestVal">0</span>
+              </div>
+            </div>
+
+            <div class="combo-indicator" id="comboIndicator">
+              <span class="combo-x">×</span>
+              <span class="combo-num" id="comboNum">2</span>
+            </div>
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div class="game-over" id="gameOver">
+              <h3 class="go-title" id="goTitle">Время вышло!</h3>
+              <p class="go-score">Очков: <span id="finalScore">0</span></p>
+              <p class="go-stats" id="goStats"></p>
+              <p class="go-best" id="goBestMsg"></p>
+              <button class="mega-btn" id="restartBtn">ЕЩЁ РАЗ 🔁</button>
+            </div>
+          </div>
+
+          <button class="mega-btn" data-next data-anim id="gameNextBtn">
+            ДАЛЬШЕ →
+          </button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 8: ТОРТ + ВИДЕО -->
+      <section class="scene" data-scene="7">
+        <div class="content wide">
+          <h2 class="big-title small" data-anim>Задуй свечу 🕯️</h2>
+          <p class="sub-small" data-anim>Загадай желание…</p>
+
+          <div class="cake-stage" data-anim>
+            <div class="cake-3d">
+              <div class="cake-flame" id="cakeFlame">
+                <div class="flame-inner"></div>
+                <div class="flame-glow"></div>
+              </div>
+              <div class="cake-candle"></div>
+              <div class="cake-layer layer-top"></div>
+              <div class="cake-layer layer-mid"></div>
+              <div class="cake-layer layer-bot"></div>
+              <div class="cake-plate"></div>
+              <div class="cake-shadow"></div>
+            </div>
+          </div>
+
+          <button class="mega-btn" id="blowBtn" data-anim>ДУНУТЬ 💨</button>
+          <p class="blow-hint" id="blowHint"></p>
+
+          <div class="video-reveal" id="videoReveal">
+            <h3 class="video-title">💃🕺</h3>
+            <p class="video-sub">
+              Тот самый момент, который я хочу пересматривать снова и снова
+            </p>
+            <video id="surpriseVideo" controls playsinline preload="metadata">
+              <source src="video/vals.mp4" type="video/mp4" />
+              Твой браузер не поддерживает видео.
+            </video>
+          </div>
+
+          <button class="mega-btn" data-next data-anim id="afterCakeBtn">
+            ДАЛЬШЕ →
+          </button>
+        </div>
+      </section>
+
+      <!-- СЦЕНА 9: ФИНАЛ -->
+      <section class="scene" data-scene="8">
+        <div class="content">
+          <div class="final-wrap" data-anim>
+            <p class="final-line-1">С Днём рождения,</p>
+            <p class="final-line-2">Машунька!</p>
+          </div>
+          <button class="mega-btn" id="finalBtn" data-anim>ЕЩЁ САЛЮТ 🎇</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="flash" id="flash"></div>
+
+    <!-- ФОНОВАЯ МУЗЫКА -->
+    <audio id="bgMusic" src="music/medlyachok.mp3" loop preload="auto"></audio>
+
+    <!-- МИНИ-ПЛЕЕР -->
+    <div class="mini-player" id="miniPlayer">
+      <button class="mini-btn" id="miniPlayBtn">❚❚</button>
+      <div class="mini-info">
+        <div class="mini-title" id="miniTitle">—</div>
+        <div class="mini-progress-wrap" id="miniProgressWrap">
+          <div class="mini-progress" id="miniProgress"></div>
+        </div>
+      </div>
+      <div class="mini-time" id="miniTime">0:00</div>
+    </div>
+
+    <!-- ПОЛНОЭКРАННАЯ ОТКРЫТКА -->
+    <div class="love-letter" id="loveLetter">
+      <div class="love-letter-backdrop" id="loveLetterBackdrop"></div>
+      <div class="love-letter-card" id="loveLetterCard">
+        <button class="love-close" id="loveClose" aria-label="Закрыть">
+          ✕
+        </button>
+
+        <div class="love-content">
+          <p class="love-line line-1">С днём рождения,</p>
+          <h2 class="love-line line-2">Машунька! 🥳</h2>
+
+          <p class="love-line line-3">
+            Чтобы всё было <span class="accent">как по маслу</span> и банальное,
+            но самое главное —
+            <span class="accent-2">чтобы здоровье было ашаленное</span>, не
+            болей 🤩
+          </p>
+
+          <p class="love-line line-4">
+            Так получилось хз почему, но чёт тока тебя хочу я радовать. Девчонок
+            много, но хочу только тебя я, ведь
+            <span class="name-highlight">Маракулина Мария Антоновна</span> одна
+            🥰
+          </p>
+
+          <p class="love-line line-5">
+            Да, Машка, я мудила, страдал фигнёй, ну долбанат короче, но радовать
+            хочу тока тебя и доказать в общении, что я изменился, хочу только
+            тебе 💋
+          </p>
+
+          <p class="love-line line-6">
+            А вальс наш с тобой <span class="accent">самый лучший</span> 🤟
+          </p>
+
+          <div class="love-films">
+            <div class="love-film">
+              <span class="film-emoji">🎬</span>
+              <span class="film-name">Зверополис</span>
+              <span class="film-time">1:23:46</span>
+              <span class="film-heart">🥰</span>
+            </div>
+            <div class="love-film">
+              <span class="film-emoji">🎬</span>
+              <span class="film-name">Дневник памяти</span>
+              <span class="film-time">1:38:11</span>
+              <span class="film-heart">🌟</span>
+            </div>
+            <div class="love-film">
+              <span class="film-emoji">🎬</span>
+              <span class="film-name"
+                >Новый человек паук:<br />Высокое напряжение</span
+              >
+              <span class="film-time">1:45:25</span>
+              <span class="film-heart">💋</span>
+            </div>
+          </div>
+
+          <p class="love-line line-7 love-final">
+            Клянусь, щас, если бы увидел тебя,<br />
+            то <span class="accent-2">расцеловал и заобнимал бы</span> 💋
+          </p>
+
+          <p class="love-line line-8 love-extra">
+            Ты — та, ради которой хочется стать лучше 💪
+          </p>
+
+          <p class="love-sign">— от того, кто хочет радовать только тебя ❤️</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
